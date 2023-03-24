@@ -171,14 +171,14 @@
                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required id="msg"></textarea>
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" id="sendEnquiry">Send Message</button></div>
             </form>
           </div>
 
@@ -278,6 +278,27 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    const sendEnquiryBtn=document.querySelector("#sendEnquiry");
+      sendEnquiryBtn.addEventListener("click",()=>{
+        const enquiry={
+        "name":document.querySelector("#name").value,
+        "email":document.querySelector("#email").value,
+        "subject":document.querySelector("#subject").value,
+        "msg":document.querySelector("#msg").value
+      };
+      let options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 
+                    'application/json;charset=utf-8'
+            },
+             body: JSON.stringify(enquiry)
+      }
+      let fetchRes = fetch("https://dev-alive-backend.vercel.app/api/enquiry", options);
+      fetchRes.then(res =>res.json()).then(d => {console.log(d)})
+    });
+  </script>
 
 </body>
 
