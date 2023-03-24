@@ -173,11 +173,11 @@
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required id="msg"></textarea>
               </div>
-              <div class="my-3">
+              <!-- <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
+              </div> -->
               <div class="text-center"><button type="submit" id="sendEnquiry">Send Message</button></div>
             </form>
           </div>
@@ -296,7 +296,7 @@
              body: JSON.stringify(enquiry)
       }
       let fetchRes = fetch("https://dev-alive-backend.vercel.app/api/enquiry", options);
-      fetchRes.then(res =>res.json()).then(d => {console.log(d)})
+      fetchRes.then(res =>res.json()).then(d => {window.alert("your enquiry has been saved successfully,our team will reach out to you very soon");window.location.href="/index.html"})
     });
   </script>
 
